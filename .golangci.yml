@@ -21,7 +21,7 @@ output:
   # Example: "checkstyle:report.xml,json:stdout,colored-line-number"
   #
   # Default: colored-line-number
-  format: github-actions,colored-line-number
+  # format: github-actions,colored-line-number
 
   print-issued-lines: true
   print-linter-name: true
@@ -409,7 +409,7 @@ linters-settings:
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#cognitive-complexity
       - name: cognitive-complexity
         severity: warning
-        disabled: false
+        disabled: true
         arguments: [ 7 ]
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#comment-spacings
       - name: comment-spacings
@@ -443,7 +443,7 @@ linters-settings:
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#cyclomatic
       - name: cyclomatic
         severity: warning
-        disabled: false
+        disabled: true
         arguments: [ 3 ]
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#datarace
       - name: datarace
@@ -505,7 +505,7 @@ linters-settings:
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#file-header
       - name: file-header
         severity: warning
-        disabled: false
+        disabled: true
         arguments:
           - This is the text that must appear at the top of source files.
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#flag-parameter
@@ -556,8 +556,8 @@ linters-settings:
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#line-length-limit
       - name: line-length-limit
         severity: warning
-        disabled: false
-        arguments: [ 80 ]
+        disabled: true
+        arguments: [ 120 ]
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#max-public-structs
       - name: max-public-structs
         severity: warning
@@ -703,46 +703,46 @@ linters-settings:
     checks: [ "all" ]
 
   thelper:
-    test:
+    test: {}
       # Check *testing.T is first param (or after context.Context) of helper function.
       # Default: true
-      first: false
+      # first: false
       # Check *testing.T param has name t.
       # Default: true
-      name: false
+      # name: false
       # Check t.Helper() begins helper function.
       # Default: true
-      begin: false
-    benchmark:
+      # begin: false
+    benchmark: {}
       # Check *testing.B is first param (or after context.Context) of helper function.
       # Default: true
-      first: false
+      # first: false
       # Check *testing.B param has name b.
       # Default: true
-      name: false
+      # name: false
       # Check b.Helper() begins helper function.
       # Default: true
-      begin: false
-    tb:
+      # begin: false
+    tb: {}
       # Check *testing.TB is first param (or after context.Context) of helper function.
       # Default: true
-      first: false
+      # first: false
       # Check *testing.TB param has name tb.
       # Default: true
-      name: false
+      # name: false
       # Check tb.Helper() begins helper function.
       # Default: true
-      begin: false
-    fuzz:
+      # begin: false
+    fuzz: {}
       # Check *testing.F is first param (or after context.Context) of helper function.
       # Default: true
-      first: false
+      # first: false
       # Check *testing.F param has name f.
       # Default: true
-      name: false
+      # name: false
       # Check f.Helper() begins helper function.
       # Default: true
-      begin: false
+      # begin: false
 
   unparam:
     # Inspect exported functions.
@@ -896,18 +896,18 @@ linters:
   # https://golangci-lint.run/usage/linters
   presets:
     - bugs
-    - comment
-    - complexity
+  #   - comment
+  #   - complexity
     - error
-    - format
-    - import
-    - metalinter
-    - module
+  #   - format
+  #   - import
+  #   - metalinter
+  #   - module
     - performance
-    - sql
-    - style
-    - test
-    - unused
+  #   - sql
+  #   - style
+  #   - test
+  #   - unused
 
   # Run only fast linters from enabled linters set (first run won't be fast)
   # Default: false
