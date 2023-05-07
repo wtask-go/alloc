@@ -72,5 +72,9 @@ func TestCopy(t *testing.T) {
 	t.Run("string", testCopy[string]("", "string"))
 	t.Run("myString", testCopy(types.myString...))
 
+	t.Run("untyped bool", testCopy(false, true))
+	t.Run("bool", testCopy[bool](false, true))
+	t.Run("myBool", testCopy[myBool](false, true))
+
 	t.Run("time.Time", testCopy(time.Time{}, time.Now()))
 }

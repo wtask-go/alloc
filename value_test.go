@@ -69,5 +69,9 @@ func TestValue(t *testing.T) {
 	t.Run("string", testValue[string]("", "string"))
 	t.Run("myString", testValue(types.myString...))
 
+	t.Run("untyped bool", testValue(false, true))
+	t.Run("bool", testValue[bool](false, true))
+	t.Run("myBool", testValue[myBool](false, true))
+
 	t.Run("time.Time", testValue(time.Time{}, time.Now()))
 }

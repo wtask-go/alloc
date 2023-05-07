@@ -75,5 +75,9 @@ func TestDeref(t *testing.T) {
 	t.Run("string", testDeref[string]("", "string"))
 	t.Run("myString", testDeref(types.myString...))
 
+	t.Run("untyped bool", testDeref(false, true))
+	t.Run("bool", testDeref[bool](false, true))
+	t.Run("myBool", testDeref[myBool](false, true))
+
 	t.Run("time.Time", testDeref(time.Time{}, time.Now()))
 }

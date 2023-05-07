@@ -66,5 +66,9 @@ func TestNew(t *testing.T) {
 	t.Run("string", testNew[string]("", "string"))
 	t.Run("myString", testNew(types.myString...))
 
+	t.Run("untyped bool", testNew(false, true))
+	t.Run("bool", testNew[bool](false, true))
+	t.Run("myBool", testNew[myBool](false, true))
+
 	t.Run("time.Time", testNew(time.Time{}, time.Now()))
 }
