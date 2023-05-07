@@ -28,7 +28,7 @@ format:
 
 .PHONY: lint
 lint:
-	golangci-lint run --sort-results --out-format colored-line-number
+	golangci-lint run --out-format colored-line-number
 	@echo
 
 .PHONY: test
