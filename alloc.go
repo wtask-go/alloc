@@ -9,7 +9,7 @@ import (
 )
 
 type Scope interface {
-	constraints.Ordered | time.Time
+	constraints.Ordered | ~bool | time.Time | time.Duration
 }
 
 func New[V Scope](value V) *V {
