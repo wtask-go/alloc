@@ -376,6 +376,7 @@ linters-settings:
             allowStrs: '""'
             allowInts: "0,1,2"
             allowFloats: "0.0,0.,1.0,1.,2.0,2."
+            ignoreFuncs: "time\\.Date"
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#argument-limit
       - name: argument-limit
         severity: warning
@@ -521,7 +522,7 @@ linters-settings:
       - name: function-length
         severity: warning
         disabled: false
-        arguments: [ 10, 0 ]
+        arguments: [ 25, 0 ]
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#get-return
       - name: get-return
         severity: warning
@@ -669,7 +670,7 @@ linters-settings:
         disabled: false
         arguments:
           - "fmt.Printf"
-          - "myFunction"
+          - "fmt.Println"
       # https://github.com/mgechev/revive/blob/master/RULES_DESCRIPTIONS.md#unnecessary-stmt
       - name: unnecessary-stmt
         severity: warning
