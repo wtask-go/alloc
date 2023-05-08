@@ -19,6 +19,8 @@ type (
 	myFloat64 float64
 
 	myString string
+
+	myBool bool
 )
 
 // types contains extra data to test alloc-package
@@ -41,6 +43,7 @@ var types = struct {
 	myFloat64 []myFloat64
 
 	myString []myString
+	myBool   []myBool
 }{
 	myInt:   []myInt{-1, 0, 1},
 	myInt8:  []myInt8{-1, 0, 1},
@@ -60,4 +63,6 @@ var types = struct {
 	myFloat64: []myFloat64{-1.1, 0, 1.1},
 
 	myString: []myString{"", "my string"},
+
+	myBool: []myBool{false, true},
 }

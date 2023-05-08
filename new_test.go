@@ -7,7 +7,7 @@ import (
 	"github.com/wtask-go/alloc"
 )
 
-func testNew[T alloc.Scope](cases ...T) func(*testing.T) {
+func makeTestNew[T alloc.Scope](cases ...T) func(*testing.T) {
 	return func(t *testing.T) {
 		t.Helper()
 
@@ -23,48 +23,61 @@ func testNew[T alloc.Scope](cases ...T) func(*testing.T) {
 				t.Fatal("got value:", *ref, "expected:", c)
 			}
 		}
-
 	}
 }
 
+//nolint:revive // function-length: it is required to test all type constraints provided by alloc.Scope
 func TestNew(t *testing.T) {
 	t.Parallel()
 
-	t.Run("untyped int", testNew(-1, 0, 1))
-	t.Run("int", testNew[int](-1, 0, 1))
-	t.Run("int8", testNew[int8](-1, 0, 1))
-	t.Run("int16", testNew[int16](-1, 0, 1))
-	t.Run("int32", testNew[int32](-1, 0, 1))
-	t.Run("int64", testNew[int64](-1, 0, 1))
-	t.Run("myInt", testNew(types.myInt...))
-	t.Run("myInt8", testNew(types.myInt8...))
-	t.Run("myInt16", testNew(types.myInt16...))
-	t.Run("myInt32", testNew(types.myInt32...))
-	t.Run("myInt64", testNew(types.myInt64...))
+	t.Run("untyped int", makeTestNew(-1, 0, 1))
+	t.Run("int", makeTestNew[int](-1, 0, 1))
+	t.Run("int8", makeTestNew[int8](-1, 0, 1))
+	t.Run("int16", makeTestNew[int16](-1, 0, 1))
+	t.Run("int32", makeTestNew[int32](-1, 0, 1))
+	t.Run("int64", makeTestNew[int64](-1, 0, 1))
+	t.Run("myInt", makeTestNew(types.myInt...))
+	t.Run("myInt8", makeTestNew(types.myInt8...))
+	t.Run("myInt16", makeTestNew(types.myInt16...))
+	t.Run("myInt32", makeTestNew(types.myInt32...))
+	t.Run("myInt64", makeTestNew(types.myInt64...))
 
-	t.Run("uint", testNew[uint](0, 1))
-	t.Run("uint8", testNew[uint8](0, 1))
-	t.Run("uint16", testNew[uint16](0, 1))
-	t.Run("uint32", testNew[uint32](0, 1))
-	t.Run("uint64", testNew[uint64](0, 1))
-	t.Run("myUInt", testNew(types.myUInt...))
-	t.Run("myUInt8", testNew(types.myUInt8...))
-	t.Run("myUInt16", testNew(types.myUInt16...))
-	t.Run("myUInt32", testNew(types.myUInt32...))
-	t.Run("myUInt64", testNew(types.myUInt64...))
+	t.Run("uint", makeTestNew[uint](0, 1))
+	t.Run("uint8", makeTestNew[uint8](0, 1))
+	t.Run("uint16", makeTestNew[uint16](0, 1))
+	t.Run("uint32", makeTestNew[uint32](0, 1))
+	t.Run("uint64", makeTestNew[uint64](0, 1))
+	t.Run("myUInt", makeTestNew(types.myUInt...))
+	t.Run("myUInt8", makeTestNew(types.myUInt8...))
+	t.Run("myUInt16", makeTestNew(types.myUInt16...))
+	t.Run("myUInt32", makeTestNew(types.myUInt32...))
+	t.Run("myUInt64", makeTestNew(types.myUInt64...))
 
-	t.Run("uintptr", testNew[uintptr](0, 1))
-	t.Run("myUIntPtr", testNew(types.myUIntPtr...))
+	t.Run("uintptr", makeTestNew[uintptr](0, 1))
+	t.Run("myUIntPtr", makeTestNew(types.myUIntPtr...))
 
-	t.Run("untyped float", testNew(-1.0, 0.0, 1.0))
-	t.Run("float32", testNew[float32](-1.0, 0.0, 1.0))
-	t.Run("float64", testNew[float64](-1.0, 0.0, 1.0))
-	t.Run("myFloat32", testNew(types.myFloat32...))
-	t.Run("myFloat64", testNew(types.myFloat64...))
+	t.Run("untyped float", makeTestNew(-1.0, 0.0, 1.0))
+	t.Run("float32", makeTestNew[float32](-1.0, 0.0, 1.0))
+	t.Run("float64", makeTestNew[float64](-1.0, 0.0, 1.0))
+	t.Run("myFloat32", makeTestNew(types.myFloat32...))
+	t.Run("myFloat64", makeTestNew(types.myFloat64...))
 
-	t.Run("untyped string", testNew("", "untyped string"))
-	t.Run("string", testNew[string]("", "string"))
-	t.Run("myString", testNew(types.myString...))
+	t.Run("untyped string", makeTestNew("", "untyped string"))
+	t.Run("string", makeTestNew[string]("", "string"))
+	t.Run("myString", makeTestNew(types.myString...))
 
-	t.Run("time.Time", testNew(time.Time{}, time.Now()))
+	t.Run("untyped bool", makeTestNew(false, true))
+	t.Run("bool", makeTestNew[bool](false, true))
+	t.Run("myBool", makeTestNew[myBool](false, true))
+
+	t.Run("time.Time", makeTestNew(time.Time{}, time.Now()))
+
+	t.Run("time.Duration", makeTestNew(
+		-1*time.Nanosecond,
+		0*time.Nanosecond,
+		1*time.Nanosecond,
+		1*time.Microsecond,
+		1*time.Millisecond,
+		1*time.Second,
+	))
 }
