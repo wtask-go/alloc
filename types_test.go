@@ -43,7 +43,8 @@ var types = struct {
 	myFloat64 []myFloat64
 
 	myString []myString
-	myBool   []myBool
+
+	myBool []myBool
 }{
 	myInt:   []myInt{-1, 0, 1},
 	myInt8:  []myInt8{-1, 0, 1},
