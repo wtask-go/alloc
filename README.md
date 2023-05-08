@@ -2,6 +2,8 @@
 
 Allocation and dereference package for Go.
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/wtask-go/alloc.svg)](https://pkg.go.dev/github.com/wtask-go/alloc)
+
 ## Requirements
 
 Go 1.20 and above.
