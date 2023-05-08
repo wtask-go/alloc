@@ -37,7 +37,7 @@ func makeTestCopy[T alloc.Scope](cases ...T) func(*testing.T) {
 	}
 }
 
-//nolint:revive // function-length: it is require to test all type constraints provided by alloc.Scope
+//nolint:revive // function-length: it is required to test all type constraints provided by alloc.Scope
 func TestCopy(t *testing.T) {
 	t.Parallel()
 

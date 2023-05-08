@@ -30,7 +30,7 @@ func makeTestValue[T alloc.Scope](cases ...T) func(*testing.T) {
 	}
 }
 
-//nolint:revive // function-length: it is require to test all type constraints provided by alloc.Scope
+//nolint:revive // function-length: it is required to test all type constraints provided by alloc.Scope
 func TestValue(t *testing.T) {
 	t.Parallel()
 
