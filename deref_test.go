@@ -81,4 +81,13 @@ func TestDeref(t *testing.T) {
 	t.Run("myBool", makeTestDeref[myBool](false, true))
 
 	t.Run("time.Time", makeTestDeref(time.Time{}, time.Now()))
+
+	t.Run("time.Duration", makeTestDeref(
+		-1*time.Nanosecond,
+		0*time.Nanosecond,
+		1*time.Nanosecond,
+		1*time.Microsecond,
+		1*time.Millisecond,
+		1*time.Second,
+	))
 }

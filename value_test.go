@@ -75,4 +75,13 @@ func TestValue(t *testing.T) {
 	t.Run("myBool", makeTestValue[myBool](false, true))
 
 	t.Run("time.Time", makeTestValue(time.Time{}, time.Now()))
+
+	t.Run("time.Duration", makeTestValue(
+		-1*time.Nanosecond,
+		0*time.Nanosecond,
+		1*time.Nanosecond,
+		1*time.Microsecond,
+		1*time.Millisecond,
+		1*time.Second,
+	))
 }

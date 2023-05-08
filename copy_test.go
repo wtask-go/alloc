@@ -82,4 +82,13 @@ func TestCopy(t *testing.T) {
 	t.Run("myBool", makeTestCopy[myBool](false, true))
 
 	t.Run("time.Time", makeTestCopy(time.Time{}, time.Now()))
+
+	t.Run("time.Duration", makeTestCopy(
+		-1*time.Nanosecond,
+		0*time.Nanosecond,
+		1*time.Nanosecond,
+		1*time.Microsecond,
+		1*time.Millisecond,
+		1*time.Second,
+	))
 }
